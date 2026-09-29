@@ -14,4 +14,19 @@ package br.edu.cs.poo.ac.seguro.entidades;
  * retorna o tipo de sinistro correspondente ao código recebido como parâmetro
  */
 public enum TipoSinistro {
+
+    COLISAO(1, "Colisão"), INCENDIO (2, "Incêndio"), FURTO (3, "Furto"), ENCHENTE(4, "Enchente"), DEPRADACAO(5, "Depradação");
+    private int codigo;
+    private String nome;
+    TipoSinistro(int codigo,  String nome) {}
+
+    public int getCodigo() {
+        return codigo;
+    }
+    public String getNome() {
+        return nome;
+    }
+    public TipoSinistro getTipoSinistro(int codigo) {
+        return TipoSinistro.values()[codigo];
+    }
 }

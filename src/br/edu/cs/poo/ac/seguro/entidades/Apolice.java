@@ -13,6 +13,8 @@ public class Apolice {
     private BigDecimal valorPremio;
     @Getter @Setter
     private BigDecimal valorMaximoSegurado;
+    @Getter @Setter
+    private String numero;
 
     public Apolice(Veiculo veiculo,  BigDecimal valorFranquia, BigDecimal valorPremio,  BigDecimal valorMaximoSegurado) {
         this.veiculo = veiculo;

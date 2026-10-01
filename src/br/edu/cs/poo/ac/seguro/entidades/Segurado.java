@@ -18,6 +18,7 @@ public class Segurado {
     protected LocalDate getDataCriacao() {
         return dataCriacao;
     }
+
     public BigDecimal getBonus() {
         return bonus;
     }
@@ -31,7 +32,8 @@ public class Segurado {
     protected void setDataCriacao(LocalDate dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
-    public void setBonus(BigDecimal bonus) {
+
+    private void setBonus(BigDecimal bonus) {
         this.bonus = bonus;
     }
 

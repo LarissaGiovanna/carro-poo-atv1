@@ -1,8 +1,10 @@
 package br.edu.cs.poo.ac.seguro.entidades;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+@AllArgsConstructor
 public class Veiculo {
     @Getter @Setter
     private String placa;
@@ -14,14 +16,4 @@ public class Veiculo {
     private SeguradoPessoa proprietarioPessoa;
     @Getter @Setter
     private CategoriaVeiculo categoria;
-
-    public Veiculo(String placa, int ano, SeguradoEmpresa proprietarioEmpresa, SeguradoPessoa proprietarioPessoa, CategoriaVeiculo categoria) {
-        this.placa = placa;
-        this.ano = ano;
-        this.proprietarioEmpresa = proprietarioEmpresa;
-        this.proprietarioPessoa = proprietarioPessoa;
-        this.categoria = categoria;
-
-    }
-
 }

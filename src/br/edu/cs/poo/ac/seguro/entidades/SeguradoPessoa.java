@@ -33,7 +33,7 @@ public class SeguradoPessoa extends Segurado{
         return getDataCriacao();
     }
 
-    public void setDataNascimento(LocalDate dataNascimento) {
-        setDataCriacao(dataNascimento);
+    public void setDataNascimento(LocalDate dataAbertura) {
+        setDataCriacao(dataAbertura);
     }
 }

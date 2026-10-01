@@ -32,10 +32,18 @@ public class SeguradoEmpresa extends Segurado{
         this.ehLocadoraDeVeiculos = ehLocadoraDeVeiculos;
     }
 
-    public SeguradoEmpresa(String cnpj, double faturamento, boolean ehLocadoraDeVeiculos, String nome, Endereco endereco, LocalDate dataCriacao, BigDecimal bonus) {
-        super(nome, endereco, dataCriacao, bonus);
+    public SeguradoEmpresa(String cnpj, double faturamento, boolean ehLocadoraDeVeiculos, String nome, Endereco endereco, LocalDate dataAbertura, BigDecimal bonus) {
+        super(nome, endereco, dataAbertura, bonus);
         this.cnpj = cnpj;
         this.faturamento = faturamento;
         this.ehLocadoraDeVeiculos=ehLocadoraDeVeiculos;
+    }
+
+    public LocalDate getDataAbertura() {
+        return getDataCriacao();
+    }
+
+    public void setDataAbertura(LocalDate dataAbertura) {
+        setDataCriacao(dataAbertura);
     }
 }

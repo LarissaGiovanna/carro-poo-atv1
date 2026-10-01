@@ -23,9 +23,17 @@ public class SeguradoPessoa extends Segurado{
         this.renda = renda;
     }
 
-    public SeguradoPessoa(String cpf, double renda, String nome, Endereco endereco, LocalDate dataCriacao,  BigDecimal bonus) {
-        super(nome, endereco, dataCriacao, bonus);
+    public SeguradoPessoa(String cpf, double renda, String nome, Endereco endereco, LocalDate dataNascimento,  BigDecimal bonus) {
+        super(nome, endereco, dataNascimento, bonus);
         this.cpf = cpf;
         this.renda = renda;
+    }
+
+    public LocalDate getDataNascimento() {
+        return getDataCriacao();
+    }
+
+    public void setDataNascimento(LocalDate dataNascimento) {
+        setDataCriacao(dataNascimento);
     }
 }

@@ -15,10 +15,13 @@ package br.edu.cs.poo.ac.seguro.entidades;
  */
 public enum TipoSinistro {
 
-    COLISAO(1, "Colisão"), INCENDIO (2, "Incêndio"), FURTO (3, "Furto"), ENCHENTE(4, "Enchente"), DEPREDACAO(5, "Depradação");
+    COLISAO(1, "Colisão"), INCENDIO (2, "Incêndio"), FURTO (3, "Furto"), ENCHENTE(4, "Enchente"), DEPREDACAO(5, "Depredação");
     private int codigo;
     private String nome;
-    TipoSinistro(int codigo,  String nome) {}
+    private TipoSinistro(int codigo,  String nome) {
+        this.codigo = codigo;
+        this.nome = nome;
+    }
 
     public int getCodigo() {
         return codigo;
@@ -27,6 +30,14 @@ public enum TipoSinistro {
         return nome;
     }
     public static TipoSinistro getTipoSinistro(int codigo) {
-        return TipoSinistro.values()[codigo];
+
+        return switch (codigo) {
+            case 1 -> TipoSinistro.COLISAO;
+            case 2 -> TipoSinistro.INCENDIO;
+            case 3 -> TipoSinistro.FURTO;
+            case 4 -> TipoSinistro.ENCHENTE;
+            case 5 -> TipoSinistro.DEPREDACAO;
+            default -> null;
+        };
     }
 }

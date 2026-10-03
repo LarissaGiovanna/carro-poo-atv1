@@ -15,56 +15,83 @@ public class SeguradoMediator {
     }
 
     /**
-     * Valida o nome do segurado: não pode ser nulo nem em branco.
-     * Retorna mensagem de erro, ou null se válido.
+     * Valida o nome do segurado:
+     * - Não pode ser nulo nem em branco.
+     * - Tamanho máximo de 100 caracteres.
      */
     public String validarNome(String nome) {
         if (StringUtils.ehNuloOuBranco(nome)) {
-            return "Nome inválido";
+            return "Nome deve ser informado";
+        }
+        if (nome.length() > 100) {
+            return "Tamanho do nome deve ser no m\u00E1ximo 100 caracteres";
         }
         return null;
     }
 
     /**
-     * Valida o endereço do segurado: não pode ser nulo; logradouro e CEP
-     * são obrigatórios.
-     * Retorna mensagem de erro, ou null se válido.
+     * Valida o endereço do segurado na ordem especificada pelos testes.
      */
     public String validarEndereco(Endereco endereco) {
         if (endereco == null) {
-            return "Endereço inválido";
+            return "Endere\u00E7o deve ser informado";
         }
         if (StringUtils.ehNuloOuBranco(endereco.getLogradouro())) {
-            return "Logradouro inválido";
+            return "Logradouro deve ser informado";
         }
         if (StringUtils.ehNuloOuBranco(endereco.getCep())) {
-            return "CEP inválido";
+            return "CEP deve ser informado";
+        }
+        if (endereco.getCep().length() != 8) {
+            return "Tamanho do CEP deve ser 8 caracteres";
+        }
+        if (!StringUtils.temSomenteNumeros(endereco.getCep())) {
+            return "CEP deve ter formato NNNNNNNN";
+        }
+        if (StringUtils.ehNuloOuBranco(endereco.getCidade())) {
+            return "Cidade deve ser informada";
+        }
+        if (endereco.getCidade().length() > 100) {
+            return "Tamanho da cidade deve ser no m\u00E1ximo 100 caracteres";
+        }
+        if (StringUtils.ehNuloOuBranco(endereco.getEstado())) {
+            return "Sigla do estado deve ser informada";
+        }
+        if (endereco.getEstado().length() != 2) {
+            return "Tamanho da sigla do estado deve ser 2 caracteres";
+        }
+        if (StringUtils.ehNuloOuBranco(endereco.getPais())) {
+            return "Pa\u00EDs deve ser informado";
+        }
+        if (endereco.getPais().length() > 40) {
+            return "Tamanho do pa\u00EDs deve ser no m\u00E1ximo 40 caracteres";
+        }
+        if (!StringUtils.ehNuloOuBranco(endereco.getNumero()) && endereco.getNumero().length() > 20) {
+            return "Tamanho do n\u00FAmero deve ser no m\u00E1ximo 20 caracteres";
+        }
+        if (!StringUtils.ehNuloOuBranco(endereco.getComplemento()) && endereco.getComplemento().length() > 30) {
+            return "Tamanho do complemento deve ser no m\u00E1ximo 30 caracteres";
         }
         return null;
     }
 
     /**
-     * Valida a data de criação/nascimento/abertura do segurado:
-     * não pode ser nula nem estar no futuro.
-     * Retorna mensagem de erro, ou null se válida.
+     * Valida a data de criação do segurado:
+     * - Não pode ser nula.
+     * - Não pode estar no futuro (menor ou igual à data atual).
      */
     public String validarDataCriacao(LocalDate dataCriacao) {
         if (dataCriacao == null) {
-            return "Data inválida";
+            return "Data da cria\u00E7\u00E3o deve ser informada";
         }
         if (dataCriacao.isAfter(LocalDate.now())) {
-            return "Data inválida";
+            return "Data da cria\u00E7\u00E3o deve ser menor ou igual \u00E0 data atual";
         }
         return null;
     }
 
     /**
-     * Ajusta o valor a ser debitado do bônus, garantindo que o bônus
-     * não fique negativo.
-     * - Se bonus >= valorDebito → debita valorDebito integralmente.
-     * - Se bonus < valorDebito  → debita apenas o saldo disponível (bonus).
-     *
-     * @return o valor efetivamente debitável do bônus
+     * Ajusta o valor a ser debitado do bônus.
      */
     public BigDecimal ajustarDebitoBonus(BigDecimal bonus, BigDecimal valorDebito) {
         if (bonus == null || valorDebito == null) {

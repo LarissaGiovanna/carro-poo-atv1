@@ -8,7 +8,7 @@ public class StringUtils {
         if (str == null) {
             return true;
         }
-        return false;
+        return str.trim().isEmpty();
     }
 
     public static boolean temSomenteNumeros(String input) {

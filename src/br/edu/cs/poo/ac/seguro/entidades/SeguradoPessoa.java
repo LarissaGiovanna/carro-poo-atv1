@@ -23,7 +23,7 @@ public class SeguradoPessoa extends Segurado{
         this.renda = renda;
     }
 
-    public SeguradoPessoa(String cpf, double renda, String nome, Endereco endereco, LocalDate dataNascimento,  BigDecimal bonus) {
+    public SeguradoPessoa(String nome, Endereco endereco, LocalDate dataNascimento, BigDecimal bonus, String cpf, double renda) {
         super(nome, endereco, dataNascimento, bonus);
         this.cpf = cpf;
         this.renda = renda;

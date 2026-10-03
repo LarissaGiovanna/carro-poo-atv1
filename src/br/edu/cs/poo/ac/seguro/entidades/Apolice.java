@@ -2,9 +2,11 @@ package br.edu.cs.poo.ac.seguro.entidades;
 
 import lombok.Getter;
 import lombok.Setter;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class Apolice {
+public class Apolice implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Getter @Setter
     private Veiculo veiculo;
     @Getter @Setter

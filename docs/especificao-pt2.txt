@@ -1,0 +1,49 @@
+1a MELHORIA: Poliformismo para simplificar a relação entre Veiculo e Segurado. 
+É possível representar a relação com apenas 01 atributo, do supertipo Segurado, que pode
+ser substituído por SeguradoEmpresa e SeguradoPessoa. 
+1. Tornar a classe Segurado abstrata.
+2. Criar na classe Segurado o método abstrato public boolean isEmpresa(). Este método será 
+útil em ApoliceMediator e em SinistroMediator. 
+3. Alterar a classe Veiculo nos seguintes termos: 
+	a. Remover os atributos do tipo SeguradoEmpresa e SeguradoPessoa.
+	b. Incluir um atributo proprietario, do tipo Segurado.
+4. Só segurado empresa é empresa. Segurado pessoa não é empresa.
+5. Fazer os ajustes necessários nas classes do projeto.
+
+	
+2a MELHORIA: Generalização do DAO: É possível o DAO genérico prover implementação 
+única para todas as suas subclasses, "enxergando" um supertipo geral Registro. 
+A única coisa que um registro precisa para "participar" de um CRUD é prover um id
+único. 
+1. Criar a interface Registro no pacote br.edu.cs.poo.ac.seguro.entidades. Esta deve
+ter o método String getIdUnico(), e herdar de Serializable;
+2.Fazer Segurado, Apolice, Sinistro e Veiculo implementarem tal interface. Os respectivos
+id´s únicos são: CPF ou CNPJ (para SeguradoPessoa e SeguradoEmpresa, respectivamente), 
+número, número e placa.
+3. Tornar a classe DAOGenerico abstrata, e criar nela o método abstrato 
+public Class getClasseEntidade().
+4. Tornar o atributo cadastro privado.
+5. Fazer a classe DAOGenerico. O buscarTodos deve ser implementado retornando um array de Registro.
+O buscar() deve receber uma String e retornar um Registro. Os incluir() e alterar() devem
+ receber um Registro e retornar um boolean. 
+6. Implementar os métodos do CRUD com lógica similar às implementações repetidas nos outros DAOs. 
+Os métodos CRUD devem ser public.
+7. DAO genérico deve ter um único construtor, sem parâmetros, que deve inicializar o cadastro 
+com o retorno do método getClasseEntidade().
+8. Alterar os DAO´s para herdar os métodos da classe mãe DAOGenerico, em vez de terem as 
+implementações repetidas. Implementar o getClasseEntidade() nos DAOs, retornando os class 
+correspondentes aos tipos das entidades.  
+
+3a MELHORIA: Um DAO único para segurado! O polimorfismo pode viabilizar uma única e elegante
+implementação dos dois DAOs de segurado. 
+1. Criar a classe abstrata SeguradoDAO no pacote br.edu.cs.poo.ac.seguro.daos. Ela deve estender 
+do DAO genérico, e passar na herança Segurado como tipo. 
+2. As classes SeguradoEmpresaDAO e SeguradoPessoaDAO devem herdar de SeguradoDAO. Elas devem ter, 
+respectivamente, métodos específicos de busca: public SeguradoEmpresa buscar(String numero) e 
+public SeguradoPessoa buscar(String numero). Estes métodos devem usar o método buscar mais genérico
+lá da superclasse DAOGenerico. 
+3. Fazer os ajustes necessários nas classes já existentes.
+
+4a MELHORIA
+Sinistro - entidade.
+Acrescentar os atributos privados int sequencial e String numeroApolice (com set e get públicos) na classe Sinistro. Eles não devem estar no construtor atual. 
